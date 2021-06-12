@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzeria Alt</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container whiteBG pr-4 pl-4">
+<!-------------------------------------- NAVIGATION -------------------------------------->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#"><img src="images/pizzeria-logo.PNG" id="logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Order Online</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Nutrition</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Our Story</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<!-------------------------------------- JUMBOTRON -------------------------------------->
+<div class="jumbotron">
+    <h1 class="display-4">Woodfired Perfection By The Slice</h1>
+    <p class="lead">Pizzeria is a modern artisan kitchen based in San Diego. </p>
+    <p>Our dough is made from scratch daily, and we're committed to using the freshest, highest-quality ingredients with as much locally sourced and organic produce as possible. We also offer delicious pastas, salads, and gluten-free and vegan-friendly pizza options.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
+
+<!-------------------------------------- ADDRESS FORM -------------------------------------->   
+<h2>Delivery Location</h2>
+<form name="deliveryInfo" id="deliveryInfo" onsubmit="return checkFilled()">
+<!-- NAME AND PHONE -->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="customerName">Name</label>
+      <input type="text" class="form-control" id="customerName" name="customerName" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="tel" class="form-control" id="phoneNumber" pattern="1?[\s-]?\(?(\d{3})\)?[\s-]?\d{3}[\s-]?\d{4}">
+    </div>
+  </div>
+
+<!-- ADDRESS TYPE -->
+  <div class="form-row">
+  <div class="form-group col-6">
+    <label for="addressType">Address Type</label>
+    <select class="form-control" id="dropdownlist" name="addressType" onchange="showfield(this.options[this.selectedIndex].value)">
+      <option value="">Select</option>
+      <option value="house">House</option>
+      <option value="apartment">Apartment</option>
+      <option value="business">Business</option>
+      <option value="campus"> Campus</option>
+      <option value="hotel">Hotel</option>
+      <option value="dorm">Dorm</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+
+  <div class="form-group col-6"> 
+    <div id="inputArea"></div> 
+  </div>
+
+</div>
+
+<!-- ADDRESS LINE 1 -->
+  <div class="form-group">
+    <label for="address1">Address</label>
+    <input type="text" class="form-control" id="address1">
+  </div>
+<!-- ADDRESS LINE 2 -->
+  <div class="form-group">
+    <label for="address2">Address 2</label>
+    <input type="text" class="form-control" id="address2" placeholder="Apartment number, suite, or room number (optional)">
+  </div>
+<!-- CITY STATE ZIP -->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="city">City</label>
+      <input type="text" class="form-control" id="city">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="state">State</label>
+      <input type="text" class="form-control" id="state" pattern="[a-zA-Z]{2}">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip" pattern="^[0-9]{5}(?:-[0-9]{4})?$">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mb-4">Submit</button>
+</form>
+<br>
+
+<!-------------------------------------- BUILD YOUR ORDER -------------------------------------->
+<h2>Build Your Order</h2>
+<form name="orderForm" id="orderForm">
+
+<!-------------------------------------- CRUST -------------------------------------->
+<div class="row pt-2">
+  <div class="col-6">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="handTossed" value="0" onclick="handTossedSelect()" > 
+      <label class="form-check-label" for="inlineRadio1">Hand Tossed</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="thinCrust" value="0" onclick="thinCrustSelect()">
+      <label class="form-check-label" for="inlineRadio2">Thin Crust</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="newYork" value="0" onclick="nyStyleSelect()">
+      <label class="form-check-label" for="inlineRadio3">New York Style</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="glutenFree" value="0" onclick="glutenFreeSelect()">
+      <label class="form-check-label" for="inlineRadio3">Gluten Free</label>
+    </div>
+  </div>
+  <div class="col-4"></div>
+  <div class="col-2" id="subtotal"></div>
+
+</div>
+
+<div class="row">
+<div class="col-6" id="wrapper"> 
+    <select id="crust" class="form-control mt-2 mb-2" onclick="updateTotal()" disabled>
+    <option value="">Select Your Dough</option>
+    </select>
+</div>
+</div>
+
+<div class="row">
+<div class="col-6">
+
+
+
+
+</div>
+
+</div>
+
+<!-------------------------------------- CHEESE AND SAUCE -------------------------------------->
+
+<div class="row">
+<div class="form-group col-6">
+  <label for="cheese" class='mt-2'>Cheeses</label>
+  <select class="form-control" id="cheese" onchange="updateTotal()" disabled>
+    <option value="0">Light: no charge</option>
+    <option value="0" selected>Normal: no charge</option>
+    <option value="2.99">Extra: +$2.99</option>
+    <option value="3.99">Double: +$3.99</option>
+  </select>
+</div>
+</div>  
+
+<div class="row">
+  <div class="form-group col-6">
+    <label for="sauce">Sauce</label>
+    <select class="form-control" id="sauce" onchange="updateTotal()" disabled>
+      <option value="0">Regular Tomato: no charge</option>
+      <option value=".99">Hearty Tomato: +$.99</option>
+      <option value="1.99">BBQ Sauce: +$1.99</option>
+    </select>
+  </div>
+</div>  
+
+<!-------------------------------------- TOPPINGS -------------------------------------->
+<div class="row">
+  <div class="col-6">
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="pepperoniCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck1">
+      Pepperoni
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sausageCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+      Sausage
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="hamCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+      Ham
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="baconCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+      Bacon
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="salamiCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+      Salami
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="peppersCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+      Peppers
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="olivesCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+     Olives
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="jalapenosCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+     Jalapenos
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="mushroomsCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+      Mushrooms
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="pineappleCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+      Pineapple
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="onionCb" value=".99" onclick="updateTotal()" disabled>
+    <label class="form-check-label" for="defaultCheck2">
+      Onion
+    </label>
+  </div>
+
+  </div>
+</div>
+<button type="submit" class="btn btn-primary mt-4 mb-4" id="submitPizza">Finished Building Pizza</button>
+</form>
+
+
+<!-------------------------------------- BILLING INFO - BILLING ADDRESS -------------------------------------->
+<div id='billingInfo' style="display: none"> 
+<h2>Billing Address</h2>
+  <form name="billingAddress" id="billingAddress" onsubmit="return checkFilled()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="customerName">Name</label>
+        <input type="text" class="form-control" id="customerNameBilling" name="customerNameBilling" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="address1">Address</label>
+      <input type="text" class="form-control" id="address1Billing">
+    </div>
+    <div class="form-group">
+      <label for="address2">Address 2</label>
+      <input type="text" class="form-control" id="address2Billing" placeholder="Apartment number, suite, or room number (optional)">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="cityBilling">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="stateBilling" pattern="[a-zA-Z]{2}">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control" id="inputZipBilling" pattern="^[0-9]{5}(?:-[0-9]{4})?$">
+      </div>
+    </div>
+    <!-- <button type="submit" class="btn btn-primary mb-4">Submit</button> -->
+    
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="billingCheckbox"  name="billingCheckbox" value="0" onclick="copyInputs()">
+      <label class="form-check-label font-weight-bold" for="defaultCheck2">
+        Same as Delivery Address?
+      </label>
+    </div>
+
+  </form>
+
+</div>
+
+
+
+
+<!-------------------------------------- BILLING INFO - PAYMENT -------------------------------------->
+
+
+<div class="col-5 whiteBG">
+  <footer></footer>
+</div>
+
+
+
+
+    <script src="js/js.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

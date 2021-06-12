@@ -1,0 +1,71 @@
+.jumbotron {
+    background-color: sandybrown;
+    background-image: url(../images/pizza-oven2.png);
+    background-size: cover;
+    background-position: center center;
+    color: white;
+}
+
+body {
+    background-color:#ff6801;
+    background-image: url(../images/pizza.jpg);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 2000px;
+    height:100%;
+    color: #221a16;
+    font-family: 'Roboto', sans-serif;
+}
+
+.whiteBG {background-color: white;}
+
+#logo {
+    background-image: url(../images/pizzeria-logo.PNG);
+    background-color: seagreen;
+    width: 100px;;
+}
+
+.navbar ul {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+    /* list-style: none;
+    margin: 0 auto;
+    text-align:right; */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #221a16;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ff6801;
+}
+
+footer {
+    height:100px;
+}
+
+h1 { font-family: 'Bebas Neue', cursive; font-size: 4em;}
+
+h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3em;
+    color:#221a16;}
+
+
+input:invalid {
+    border: red solid 1px;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #ff6801 !important;
+    border-color: #ff6801;
+    text-transform: uppercase;
+}
+
+#subtotal {
+    font-size: 1.2em;
+    font-weight: bold;
+}
